@@ -25,9 +25,13 @@ const TodoCard = ({ task, removeTask, editTask }) => {
   };
 
   const onSubmit = data => {
+    editTask({
+      id, 
+      title: data.title,
+      description: data.description
+    });
     setCurrTitle(data.title);
     setCurrDescription(data.description);
-    editTask(data);
     setIsEditing(false);
   };
 
@@ -38,7 +42,7 @@ const TodoCard = ({ task, removeTask, editTask }) => {
       }`}
       onClick={toggleComplete}>
       {isEditing ? (
-        <EditTaskForm task={task} onSubmit={data => onSubmit(data)}/>
+        <EditTaskForm title={currTitle} description={currDescription} onSubmit={data => onSubmit(data)}/>
       ) : (
         <div className='todo__item__content'>
           <p className='title'>{currTitle}</p>

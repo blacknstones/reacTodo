@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-const EditTaskForm = ({ task, onSubmit }) => {
-  const { id, title, description } = task;
+const EditTaskForm = ({ title, description, onSubmit }) => {
   const [currTitle, setCurrTitle] = useState(title);
   const [currDescription, setCurrDescription] = useState(description);
 
@@ -13,7 +12,6 @@ const EditTaskForm = ({ task, onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit({
-      id,
       title: currTitle,
       description: currDescription,
     });
