@@ -61,6 +61,10 @@ main {
   width: 85%;
 }
 
+.todo__item__content .desc {
+  white-space: pre-wrap;
+}
+
 .todo__item__content .title-input,
 .todo__item__content .desc-input {
   padding: 0.1rem;

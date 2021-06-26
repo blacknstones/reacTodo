@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EditTaskForm from './EditTaskForm';
 
 const TodoCard = ({ task, removeTask, editTask }) => {
@@ -9,15 +9,12 @@ const TodoCard = ({ task, removeTask, editTask }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleComplete = () => {
-    if (isEditing) {
-      setIsCompleted(false);
-      return;
-    } 
-    setIsCompleted(!isCompleted);
+    isEditing ? setIsCompleted(false) : setIsCompleted(!isCompleted);
   };
 
-  const toggleEdit = () => {
-    setIsEditing(!isEditing);
+  const onEditTask = () => {
+    setIsCompleted(false);
+    setIsEditing(true);
   };
 
   const onRemoveTask = () => {
@@ -26,23 +23,34 @@ const TodoCard = ({ task, removeTask, editTask }) => {
 
   const onSubmit = data => {
     editTask({
-      id, 
+      id,
       title: data.title,
-      description: data.description
+      description: data.description,
     });
     setCurrTitle(data.title);
     setCurrDescription(data.description);
     setIsEditing(false);
   };
 
+  useEffect(() => {
+    console.log('iscompleted', isCompleted);
+  }, [isCompleted]);
+
+  useEffect(() => {
+    console.log('isEditing', isEditing);
+  }, [isEditing]);
   return (
     <li
       className={`todo__item ${
         isCompleted && !isEditing ? 'todo__item-completed' : ''
       }`}
       onClick={toggleComplete}>
+        
       {isEditing ? (
-        <EditTaskForm title={currTitle} description={currDescription} onSubmit={data => onSubmit(data)}/>
+        <EditTaskForm
+          title={currTitle}
+          description={currDescription}
+          onSubmit={data => onSubmit(data)} />
       ) : (
         <div className='todo__item__content'>
           <p className='title'>{currTitle}</p>
@@ -51,7 +59,7 @@ const TodoCard = ({ task, removeTask, editTask }) => {
       )}
 
       {!isCompleted && !isEditing && (
-        <button className='button-edit' onClick={toggleEdit}>
+        <button className='button-edit' onClick={onEditTask}>
           <i className='far fa-edit'></i>
         </button>
       )}
