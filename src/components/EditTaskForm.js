@@ -5,10 +5,13 @@ const EditTaskForm = ({ title, description, onSubmit }) => {
   const [currDescription, setCurrDescription] = useState(description);
 
   const handleChange = e => {
-    e.target.name === 'title'
-      ? setCurrTitle(e.target.value)
-      : setCurrDescription(e.target.value);
+    if (e.target.name === 'title') {
+      setCurrTitle(e.target.value);
+    } else {
+      setCurrDescription(e.target.value);
+    }
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit({

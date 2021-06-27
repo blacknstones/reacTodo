@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import EditTaskForm from './EditTaskForm';
 
-const TodoCard = ({ task, removeTask, editTask }) => {
+const TodoCard = ({ task, removeTask, updateTask }) => {
   const { id, title, description } = task;
   const [currTitle, setCurrTitle] = useState(title);
   const [currDescription, setCurrDescription] = useState(description);
@@ -9,7 +9,11 @@ const TodoCard = ({ task, removeTask, editTask }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleComplete = () => {
-    isEditing ? setIsCompleted(false) : setIsCompleted(!isCompleted);
+    if (isEditing) {
+      setIsCompleted(false);
+    } else {
+      setIsCompleted(!isCompleted);
+    }
   };
 
   const onEditTask = () => {
@@ -22,7 +26,7 @@ const TodoCard = ({ task, removeTask, editTask }) => {
   };
 
   const onSubmit = data => {
-    editTask({
+    updateTask({
       id,
       title: data.title,
       description: data.description,
@@ -32,25 +36,18 @@ const TodoCard = ({ task, removeTask, editTask }) => {
     setIsEditing(false);
   };
 
-  useEffect(() => {
-    console.log('iscompleted', isCompleted);
-  }, [isCompleted]);
-
-  useEffect(() => {
-    console.log('isEditing', isEditing);
-  }, [isEditing]);
   return (
     <li
       className={`todo__item ${
         isCompleted && !isEditing ? 'todo__item-completed' : ''
       }`}
       onClick={toggleComplete}>
-        
       {isEditing ? (
         <EditTaskForm
           title={currTitle}
           description={currDescription}
-          onSubmit={data => onSubmit(data)} />
+          onSubmit={data => onSubmit(data)}
+        />
       ) : (
         <div className='todo__item__content'>
           <p className='title'>{currTitle}</p>

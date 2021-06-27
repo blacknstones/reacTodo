@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from './components/Header';
 import TodoList from './components/TodoList';
-import '../src/css/main.css';
+import './css/main.css';
 
+/* eslint-disable arrow-body-style */
 const App = () => {
   return (
     <div className='App'>

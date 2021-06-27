@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoList component TodoList renders empty todolist on first load 1`] = `
+<main>
+  <form
+    id="form"
+    onSubmit={[Function]}
+  >
+    <label
+      htmlFor="input__title"
+    >
+      Title
+    </label>
+    <input
+      id="input__title"
+      name="title"
+      onChange={[Function]}
+      required={true}
+      type="text"
+      value=""
+    />
+    <label
+      htmlFor="input__desc"
+    >
+      Description
+    </label>
+    <input
+      id="input__desc"
+      name="description"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <input
+      id="button-add"
+      type="submit"
+      value="Add"
+    />
+  </form>
+  <ul
+    className="todo"
+  />
+</main>
+`;

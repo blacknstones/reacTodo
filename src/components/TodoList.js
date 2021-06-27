@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AddTaskForm from './AddTaskForm';
 import TodoCard from './TodoCard';
 
@@ -14,24 +14,19 @@ const TodoList = () => {
     setTasks(newTasks);
   };
 
-  const editTask = newTask => {
-    let newTasks = tasks;
+  const updateTask = newTask => {
+    const newTasks = tasks;
     const index = tasks.findIndex(el => el.id === newTask.id);
     newTasks[index] = newTask;
     setTasks(newTasks);
-
   };
-
-  useEffect(() => {
-    console.log('tasks', tasks);
-  }, [tasks]);
 
   return (
     <main>
       <AddTaskForm onSubmit={data => onSubmit(data)} />
       <ul className='todo'>
         {tasks.map(task => (
-          <TodoCard key={task.id} task={task} removeTask={removeTask} editTask={editTask}/>
+          <TodoCard key={task.id} task={task} removeTask={removeTask} updateTask={updateTask}/>
         ))}
       </ul>
     </main>
