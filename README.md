@@ -1,6 +1,7 @@
 # reacTodo
 
 A todo-list app built with React.
+Include testing.
 ####
 ![](https://i.ibb.co/HB4WJ2H/reactodo.gif)
 
