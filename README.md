@@ -3,7 +3,7 @@
 A todo-list app built with React.
 Include testing.
 ####
-![](https://i.ibb.co/HB4WJ2H/reactodo.gif)
+![](https://i.ibb.co/ZXfxMdh/reactodo.gif)
 
 ## Demo
 https://reactodo-2ba96.web.app/
